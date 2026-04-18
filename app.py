@@ -89,4 +89,18 @@ with col_table:
         "일일 투자금 (원)": [5000, 3000, 4000, 2500, 5000, 1500, 2500, 1000, 3000, 500, 4000, 4000]
     })
     st.table(strategy_table)
-    st.table(df_sim)
+    
+# [6] 시뮬레이션 상세 프로세스 표 (v2.2 추가)
+st.markdown("---")
+st.subheader("📝 목표 달성 시뮬레이션 상세 로그")
+st.write("기초 자산에 월 투자금과 분배금을 더해 다음 달 기초 자산이 되는 과정을 보여줍니다.")
+
+# 표 데이터 포맷팅 (가독성을 위해 천단위 콤마 추가)
+df_display = df_sim.copy()
+df_display["누적자산"] = df_display["누적자산"].apply(lambda x: f"{x:,} 원")
+df_display["월분배금"] = df_display["월분배금"].apply(lambda x: f"{x:,} 원")
+
+# 인덱스를 '연월'로 설정하여 보기 좋게 출력
+st.dataframe(df_display.set_index("연월"), use_container_width=True)
+
+st.caption("※ 본 시뮬레이션은 월 평균 영업일 21일 기준이며, 주가 변동을 제외한 분배금 재투자를 가정합니다.")
