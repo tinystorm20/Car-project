@@ -89,3 +89,4 @@ with col_table:
         "일일 투자금 (원)": [5000, 3000, 4000, 2500, 5000, 1500, 2500, 1000, 3000, 500, 4000, 4000]
     })
     st.table(strategy_table)
+    st.table(df_sim)
